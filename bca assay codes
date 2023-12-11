@@ -1,0 +1,116 @@
+import sympy as sp
+
+x = sp.symbols('x')
+
+# Verilen denklemler
+equations = [
+    sp.Eq(0.0008 * x + 0.0707, 1.3035),
+    sp.Eq(0.0008 * x + 0.0707, 0.482),
+    sp.Eq(0.0008 * x + 0.0707, 0.3215),
+    sp.Eq(0.0008 * x + 0.0707, 1.3125),
+    sp.Eq(0.0008 * x + 0.0707, 0.526),
+    sp.Eq(0.0008 * x + 0.0707, 0.295),
+    sp.Eq(0.0008 * x + 0.0707, 0.221),
+    sp.Eq(0.0008 * x + 0.0707, 0.1705),
+    sp.Eq(0.0008 * x + 0.0707, 0.197),
+    sp.Eq(0.0008 * x + 0.0707, 0.1915),
+    sp.Eq(0.0008 * x + 0.0707, 0.1635),
+    sp.Eq(0.0008 * x + 0.0707, 0.1815),
+]
+
+# Her bir denklem için x değerlerini bul
+solutions = [sp.solve(eq, x)[0] for eq in equations]
+
+print(solutions)
+
+***
+
+import sympy as sp
+
+x = sp.symbols('x')
+
+# Verilen denklemler
+equations = [
+    sp.Eq(0.0010 * x + 0.0405, 2.017),
+    sp.Eq(0.0010 * x + 0.0405, 0.776),
+    sp.Eq(0.0010 * x + 0.0405, 0.235),
+    sp.Eq(0.0010 * x + 0.0405, 2.0115),
+    sp.Eq(0.0010 * x + 0.0405, 0.751),
+    sp.Eq(0.0010 * x + 0.0405, 0.223),
+    sp.Eq(0.0010 * x + 0.0405, 0.281),
+    sp.Eq(0.0010 * x + 0.0405, 0.109),
+    sp.Eq(0.0010 * x + 0.0405, 0.0495),
+    sp.Eq(0.0010 * x + 0.0405, 0.183),
+    sp.Eq(0.0010 * x + 0.0405, 0.0425),
+    sp.Eq(0.0010 * x + 0.0405, 0.0425),
+]
+
+# Her bir denklem için x değerlerini bul
+solutions = [sp.solve(eq, x)[0] for eq in equations]
+
+print(solutions)
+
+
+***
+
+
+import sympy as sp
+
+x = sp.symbols('x')
+
+# Verilen denklemler
+equations = [
+    sp.Eq(0.0007 * x - 0.0277, 2.133),
+    sp.Eq(0.0007 * x - 0.0277, 0.645),
+    sp.Eq(0.0007 * x - 0.0277, 0.1995),
+    sp.Eq(0.0007 * x - 0.0277, 2.147),
+    sp.Eq(0.0007 * x - 0.0277, 0.521),
+    sp.Eq(0.0007 * x - 0.0277, 0.195),
+    sp.Eq(0.0007 * x - 0.0277, -0.2105),
+    sp.Eq(0.0007 * x - 0.0277, -0.0675),
+    sp.Eq(0.0007 * x - 0.0277, -0.0385),
+    sp.Eq(0.0007 * x - 0.0277, -0.387),
+    sp.Eq(0.0007 * x - 0.0277, -0.088),
+    sp.Eq(0.0007 * x - 0.0277, -0.024),
+]
+
+# Her bir denklem için x değerlerini bul
+solutions = [sp.solve(eq, x)[0] for eq in equations]
+
+print(solutions)
+
+
+***
+
+import numpy as np
+from scipy.stats import linregress
+import matplotlib.pyplot as plt
+
+# Verilen veriler
+concentrations = np.array([2000, 1500, 1000, 750, 500, 250, 125, 25])
+absorbances = np.array([2.21, 1.599, 1.19, 0.9665, 0.6425, 0.404, 0.238, 0.117, 0.0865])
+
+# Absorbans değerlerinden 0.0865 çıkarma
+absorbances -= 0.0865
+
+# Doğrusal regresyon analizi
+slope, intercept, r_value, p_value, std_err = linregress(concentrations, absorbances)
+
+# Standart eğri denklemi
+equation = f'y = {slope:.4f}x + {intercept:.4f}'
+
+# Konsantrasyon değerlerine karşılık gelen absorbans tahminleri
+predicted_absorbances = slope * concentrations + intercept
+
+# Grafik çizimi
+plt.scatter(concentrations, absorbances + 0.0865, label='Veriler (0.0865 eklendi)')
+plt.plot(concentrations, predicted_absorbances + 0.0865, label=f'Standart Eğri: {equation}', color='red')
+plt.xlabel('Konsantrasyon')
+plt.ylabel('Absorbans')
+plt.title('Standart Curve')
+plt.legend()
+plt.show()
+
+# Denklemi yazdırma
+print(f'Standart Eğri Denklemi: {equation}')
+
